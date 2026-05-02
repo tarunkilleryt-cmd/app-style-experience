@@ -57,6 +57,15 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        gold: {
+          DEFAULT: "hsl(40 60% 55%)",
+          light: "hsl(40 50% 70%)",
+        },
+        wine: {
+          DEFAULT: "hsl(0 50% 30%)",
+          light: "hsl(350 40% 40%)",
+        },
+        cream: "hsl(40 30% 90%)",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -67,16 +76,6 @@ export default {
         display: ['"Playfair Display"', 'Georgia', 'serif'],
         body: ['Inter', 'sans-serif'],
       },
-      colors: {
-        gold: {
-          DEFAULT: "hsl(40 60% 55%)",
-          light: "hsl(40 50% 70%)",
-        },
-        wine: {
-          DEFAULT: "hsl(0 50% 30%)",
-          light: "hsl(350 40% 40%)",
-        },
-        cream: "hsl(40 30% 90%)",
       },
       keyframes: {
         "accordion-down": {
