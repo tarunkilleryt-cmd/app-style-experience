@@ -76,7 +76,6 @@ export default {
         display: ['"Playfair Display"', 'Georgia', 'serif'],
         body: ['Inter', 'sans-serif'],
       },
-      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
