@@ -23,57 +23,57 @@ const steps: StoryStep[] = [
   {
     image: pageIntro,
     label: "chapter one",
-    title: "Hey, You...",
+    title: "Hey, Aditi...",
     subtitle: "Yes, you.",
-    body: "Ye kisi aur ke liye nahi hai.\nYe sirf tere liye hai.\nBas thoda scroll kar... ✨",
+    body: "Ye kisi aur ke liye nahi hai.\nYe sirf tere liye hai.\nBas thoda tap kar... ✨",
     animation: "fade-up",
   },
   {
     image: pageBirthday,
-    label: "your day",
-    title: "Happy Birthday",
-    subtitle: "To my favorite human",
-    body: "Duniya mein boht log hain,\npar tujhe wish karna\nsabse zyada special hai. 🎂\n\nTera din ho ya na ho —\ntu hamesha celebrate hone chahiye.",
+    label: "26 november",
+    title: "Happy Birthday\nAditi",
+    subtitle: "26th Nov — the day the world got better",
+    body: "Jis din tu aayi duniya mein,\nus din se sab kuch\nthoda aur khoobsurat ho gaya. 🎂\n\n26 November — mera\nsabse favorite din. 🎉",
     animation: "zoom-in",
   },
   {
     image: pageFavorite,
     label: "confession",
-    title: "You're My\nFavorite",
+    title: "Aditi,\nYou're My\nFavorite",
     subtitle: "Aur ye kabhi nahi badlega",
-    body: "Log favorite song badalte hain,\nfavorite color badalte hain.\n\nPar mera favorite insaan?\nWo tu hai — aur hamesha rahega. 💛",
+    body: "Log favorite song badalte hain,\nfavorite color badalte hain.\n\nPar mera favorite insaan?\nWo tu hai Aditi — hamesha. 💛",
     animation: "slide-right",
   },
   {
     image: pageStartdate,
-    label: "the beginning",
+    label: "15 february 2025",
     title: "Jab Sab\nShuru Hua",
-    subtitle: "Wo date yaad hai?",
-    body: "Ek normal sa din tha.\nPar teri wajah se wo\nab meri zindagi ka\nsabse important din hai. 📅\n\nUs din se — sab badal gaya.",
+    subtitle: "Maha Shivratri — 15 Feb 2025",
+    body: "Maha Shivratri ki raat thi.\nBholenath ki kripa thi.\nAur tu mili. 🙏\n\n15 February 2025 —\njab hamari kahani shuru hui.\nUs din se sab badal gaya. ✨",
     animation: "slide-left",
   },
   {
     image: pageMemories,
     label: "our moments",
-    title: "Memories",
+    title: "Humari\nMemories",
     subtitle: "Jo kabhi fade nahi hongi",
-    body: "Late night talks.\nSilly fights.\nWo comfortable silence.\nWo random smiles.\n\nYe sab — sirf humara hai. 📸",
+    body: "Late night talks.\nSilly fights.\nWo comfortable silence.\nWo random smiles.\n\nYe sab — sirf humara hai,\nAditi. 📸",
     animation: "blur-in",
   },
   {
     image: pageLetter,
     label: "from the heart",
-    title: "A Letter\nFor You",
+    title: "A Letter\nFor Aditi",
     subtitle: "Ye pehle kabhi nahi bola",
-    body: "Main perfect nahi hoon.\nPar tere liye try karna —\nye meri sabse real cheez hai.\n\nTu meri strength hai,\nmeri peace hai. 🌹",
+    body: "Main perfect nahi hoon.\nPar tere liye try karna —\nye meri sabse real cheez hai.\n\nTu meri strength hai,\nmeri peace hai, Aditi. 🌹",
     animation: "rotate",
   },
   {
     image: pageForever,
     label: "the promise",
-    title: "Forever",
+    title: "Forever\nYours, Aditi",
     subtitle: "Written in the stars",
-    body: "Chahe kuch bhi ho —\nmain tere saath hoon.\n\nAaj bhi. Kal bhi.\nHamesha. ♾️",
+    body: "Chahe kuch bhi ho —\nmain tere saath hoon.\n\n15 Feb se shuru hua,\naur ye kabhi khatam nahi hoga.\nHamesha. ♾️",
     animation: "fade-up",
   },
 ];
@@ -112,6 +112,9 @@ const animationConfig = {
 };
 
 const Index = () => {
+  const [isLocked, setIsLocked] = useState(true);
+  const [dateInput, setDateInput] = useState({ day: "", month: "", year: "" });
+  const [shake, setShake] = useState(false);
   const [step, setStep] = useState(-1);
 
   const current = steps[step];
@@ -126,10 +129,113 @@ const Index = () => {
     setStep((s) => Math.max(-1, s - 1));
   }, []);
 
+  const handleUnlock = useCallback(() => {
+    const d = parseInt(dateInput.day);
+    const m = parseInt(dateInput.month);
+    const y = parseInt(dateInput.year);
+    if (d === 15 && m === 2 && y === 2025) {
+      setIsLocked(false);
+    } else {
+      setShake(true);
+      setTimeout(() => setShake(false), 600);
+    }
+  }, [dateInput]);
+
   return (
     <div className="fixed inset-0 bg-background overflow-hidden">
       <AnimatePresence mode="wait">
-        {isSplash ? (
+        {isLocked ? (
+          /* ─── LOCK SCREEN ─── */
+          <motion.div
+            key="lock"
+            className="absolute inset-0 flex flex-col items-center justify-center px-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.6 }}
+          >
+            <FloatingParticles count={15} />
+
+            <motion.div
+              className="text-5xl mb-6"
+              animate={{ rotate: [0, -5, 5, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              🔒
+            </motion.div>
+
+            <motion.h2
+              className="font-display text-3xl md:text-4xl font-bold gold-text text-center mb-2"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              Locked
+            </motion.h2>
+
+            <motion.p
+              className="font-body text-muted-foreground text-center text-sm mb-8 max-w-xs"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              Enter our special date to unlock ✨
+            </motion.p>
+
+            <motion.div
+              className="flex gap-3 mb-6"
+              animate={shake ? { x: [-10, 10, -10, 10, 0] } : {}}
+              transition={{ duration: 0.4 }}
+            >
+              <input
+                type="text"
+                inputMode="numeric"
+                maxLength={2}
+                placeholder="DD"
+                value={dateInput.day}
+                onChange={(e) => setDateInput((p) => ({ ...p, day: e.target.value.replace(/\D/g, "") }))}
+                className="w-16 h-14 rounded-xl glass-dark text-center font-display text-xl text-foreground placeholder:text-muted-foreground/40 outline-none focus:ring-1 focus:ring-gold/50"
+              />
+              <input
+                type="text"
+                inputMode="numeric"
+                maxLength={2}
+                placeholder="MM"
+                value={dateInput.month}
+                onChange={(e) => setDateInput((p) => ({ ...p, month: e.target.value.replace(/\D/g, "") }))}
+                className="w-16 h-14 rounded-xl glass-dark text-center font-display text-xl text-foreground placeholder:text-muted-foreground/40 outline-none focus:ring-1 focus:ring-gold/50"
+              />
+              <input
+                type="text"
+                inputMode="numeric"
+                maxLength={4}
+                placeholder="YYYY"
+                value={dateInput.year}
+                onChange={(e) => setDateInput((p) => ({ ...p, year: e.target.value.replace(/\D/g, "") }))}
+                className="w-20 h-14 rounded-xl glass-dark text-center font-display text-xl text-foreground placeholder:text-muted-foreground/40 outline-none focus:ring-1 focus:ring-gold/50"
+              />
+            </motion.div>
+
+            <motion.button
+              className="px-10 py-3.5 rounded-full font-body text-sm uppercase tracking-[0.2em] text-primary-foreground gradient-gold-bg shadow-gold"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleUnlock}
+            >
+              Unlock 💫
+            </motion.button>
+
+            {shake && (
+              <motion.p
+                className="font-body text-accent text-xs mt-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                Wrong date... try again 💔
+              </motion.p>
+            )}
+          </motion.div>
+        ) : isSplash ? (
           /* ─── SPLASH SCREEN ─── */
           <motion.div
             key="splash"
