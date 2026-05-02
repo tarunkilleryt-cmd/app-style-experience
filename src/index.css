@@ -101,13 +101,13 @@
   }
 
   .glass-dark {
-    background: hsl(0 0% 100% / 0.04);
+    background: hsla(0, 0%, 100%, 0.04);
     backdrop-filter: blur(20px);
-    border: 1px solid hsl(40 20% 50% / 0.1);
+    border: 1px solid hsla(40, 20%, 50%, 0.1);
   }
 
   .line-gold {
     height: 1px;
-    background: linear-gradient(90deg, transparent, hsl(40 60% 55% / 0.5), transparent);
+    background: linear-gradient(90deg, transparent, hsla(40, 60%, 55%, 0.5), transparent);
   }
 }
