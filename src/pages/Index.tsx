@@ -133,15 +133,15 @@ const Index = () => {
           /* ─── SPLASH SCREEN ─── */
           <motion.div
             key="splash"
-            className="absolute inset-0 flex flex-col items-center justify-center px-8"
+            className="absolute inset-0 flex flex-col items-center justify-center px-8 cursor-pointer"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.6 }}
+            onClick={goNext}
           >
             <FloatingParticles count={30} />
 
-            {/* Decorative line */}
             <motion.div
               className="line-gold w-16 mb-8"
               initial={{ width: 0 }}
@@ -183,22 +183,14 @@ const Index = () => {
               transition={{ delay: 0.5, duration: 1 }}
             />
 
-            <motion.button
-              className="relative px-12 py-4 rounded-full font-body text-sm uppercase tracking-[0.2em] text-primary-foreground gradient-gold-bg shadow-gold overflow-hidden"
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
+            <motion.p
+              className="font-body text-xs uppercase tracking-[0.3em] text-muted-foreground animate-glow-pulse"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ delay: 2 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={goNext}
             >
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                animate={{ x: ["-200%", "200%"] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              />
-              <span className="relative">Begin</span>
-            </motion.button>
+              tap anywhere to begin
+            </motion.p>
           </motion.div>
         ) : (
           /* ─── STORY PAGES ─── */
@@ -208,8 +200,21 @@ const Index = () => {
             {...animationConfig[current.animation]}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
+            {/* Tap zones — left = back, right = next */}
+            <div className="absolute inset-0 z-20 flex">
+              <div
+                className="w-1/3 h-full cursor-pointer"
+                onClick={step > 0 ? goBack : undefined}
+              />
+              <div className="w-1/3 h-full" />
+              <div
+                className="w-1/3 h-full cursor-pointer"
+                onClick={isLast ? () => setStep(-1) : goNext}
+              />
+            </div>
+
             {/* Progress dots */}
-            <div className="absolute top-0 left-0 right-0 z-10 px-6 pt-5">
+            <div className="absolute top-0 left-0 right-0 z-30 px-6 pt-5">
               <div className="flex gap-2">
                 {steps.map((_, i) => (
                   <div key={i} className="h-0.5 flex-1 rounded-full overflow-hidden bg-foreground/10">
@@ -252,7 +257,7 @@ const Index = () => {
             </div>
 
             {/* Text content */}
-            <div className="flex-1 flex flex-col justify-between px-6 pt-4 pb-6 overflow-hidden">
+            <div className="flex-1 flex flex-col justify-center px-6 pt-4 pb-8 overflow-hidden">
               <div>
                 <motion.h2
                   className="font-display text-3xl md:text-4xl font-bold text-foreground leading-tight whitespace-pre-line"
@@ -287,39 +292,6 @@ const Index = () => {
                 >
                   {current.body}
                 </motion.p>
-              </div>
-
-              {/* Navigation */}
-              <div className="flex items-center gap-3 mt-4">
-                {step > 0 && (
-                  <motion.button
-                    className="px-6 py-3 rounded-full glass-dark font-body text-xs uppercase tracking-[0.15em] text-foreground/70"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={goBack}
-                  >
-                    Back
-                  </motion.button>
-                )}
-
-                <motion.button
-                  className="flex-1 py-3.5 rounded-full font-body text-xs uppercase tracking-[0.2em] text-primary-foreground gradient-gold-bg shadow-gold relative overflow-hidden"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.97 }}
-                  onClick={isLast ? () => setStep(-1) : goNext}
-                >
-                  {isLast && (
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                      animate={{ x: ["-200%", "200%"] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    />
-                  )}
-                  <span className="relative">
-                    {isLast ? "Replay ✨" : "Next"}
-                  </span>
-                </motion.button>
               </div>
             </div>
           </motion.div>
