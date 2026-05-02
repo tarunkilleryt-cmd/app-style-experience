@@ -133,15 +133,15 @@ const Index = () => {
           /* ─── SPLASH SCREEN ─── */
           <motion.div
             key="splash"
-            className="absolute inset-0 flex flex-col items-center justify-center px-8"
+            className="absolute inset-0 flex flex-col items-center justify-center px-8 cursor-pointer"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.6 }}
+            onClick={goNext}
           >
             <FloatingParticles count={30} />
 
-            {/* Decorative line */}
             <motion.div
               className="line-gold w-16 mb-8"
               initial={{ width: 0 }}
@@ -183,22 +183,14 @@ const Index = () => {
               transition={{ delay: 0.5, duration: 1 }}
             />
 
-            <motion.button
-              className="relative px-12 py-4 rounded-full font-body text-sm uppercase tracking-[0.2em] text-primary-foreground gradient-gold-bg shadow-gold overflow-hidden"
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
+            <motion.p
+              className="font-body text-xs uppercase tracking-[0.3em] text-muted-foreground animate-glow-pulse"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ delay: 2 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={goNext}
             >
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                animate={{ x: ["-200%", "200%"] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              />
-              <span className="relative">Begin</span>
-            </motion.button>
+              tap anywhere to begin
+            </motion.p>
           </motion.div>
         ) : (
           /* ─── STORY PAGES ─── */
