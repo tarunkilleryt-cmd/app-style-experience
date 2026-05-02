@@ -69,7 +69,7 @@ const steps = [
 ];
 
 // Different animation variants for each step
-const animationVariants: Record<string, { initial: object; animate: object; exit: object }> = {
+const animationVariants: Record<string, { initial: Record<string, number>; animate: Record<string, number>; exit: Record<string, number> }> = {
   fadeUp: {
     initial: { opacity: 0, y: 80 },
     animate: { opacity: 1, y: 0 },
