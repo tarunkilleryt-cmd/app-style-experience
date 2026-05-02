@@ -9,6 +9,10 @@ import pageStartdate from "@/assets/page-startdate.jpg";
 import pageMemories from "@/assets/page-memories.jpg";
 import pageLetter from "@/assets/page-letter.jpg";
 import pageForever from "@/assets/page-forever.jpg";
+import pageBusy from "@/assets/page-busy.jpg";
+import pageEffort from "@/assets/page-effort.jpg";
+import pageLoyalty from "@/assets/page-loyalty.jpg";
+import pageReal from "@/assets/page-real.jpg";
 
 interface StoryStep {
   image: string;
@@ -25,7 +29,7 @@ const steps: StoryStep[] = [
     label: "chapter one",
     title: "Hey, Aditi...",
     subtitle: "Yes, you.",
-    body: "Ye kisi aur ke liye nahi hai.\nYe sirf tere liye hai.\nBas thoda tap kar... ✨",
+    body: "This isn't for anyone else.\nThis is only for you.\nJust tap and see... ✨",
     animation: "fade-up",
   },
   {
@@ -33,51 +37,82 @@ const steps: StoryStep[] = [
     label: "26 november",
     title: "Happy Birthday\nAditi",
     subtitle: "26th Nov — the day the world got better",
-    body: "Jis din tu aayi duniya mein,\nus din se sab kuch\nthoda aur khoobsurat ho gaya. 🎂\n\n26 November — mera\nsabse favorite din. 🎉",
+    body: "The day you came into this world,\neverything became a little more\nbeautiful. 🎂\n\n26 November — my\nfavorite day ever. 🎉",
     animation: "zoom-in",
   },
   {
     image: pageFavorite,
     label: "confession",
     title: "Aditi,\nYou're My\nFavorite",
-    subtitle: "Aur ye kabhi nahi badlega",
-    body: "Log favorite song badalte hain,\nfavorite color badalte hain.\n\nPar mera favorite insaan?\nWo tu hai Aditi — hamesha. 💛",
+    subtitle: "And that's never changing",
+    body: "People change their favorite song,\ntheir favorite color.\n\nBut my favorite person?\nThat's you, Aditi — always. 💛",
     animation: "slide-right",
   },
   {
     image: pageStartdate,
     label: "15 february 2025",
-    title: "Jab Sab\nShuru Hua",
+    title: "When It\nAll Began",
     subtitle: "Maha Shivratri — 15 Feb 2025",
-    body: "Maha Shivratri ki raat thi.\nBholenath ki kripa thi.\nAur tu mili. 🙏\n\n15 February 2025 —\njab hamari kahani shuru hui.\nUs din se sab badal gaya. ✨",
+    body: "It was the night of Maha Shivratri.\nBholenath's blessing.\nAnd I found you. 🙏\n\n15 February 2025 —\nwhen our story started.\nEverything changed that day. ✨",
     animation: "slide-left",
+  },
+  {
+    image: pageBusy,
+    label: "the truth",
+    title: "Busy...\nBut Never\nToo Busy",
+    subtitle: "For you — always",
+    body: "I know I stay busy sometimes…\nbut I always try to make time for you.\n\nLife gets hectic, but you're someone\nI don't ignore.\n\nEven on busy days,\nyou're on my mind somewhere. 🕐",
+    animation: "fade-up",
+  },
+  {
+    image: pageEffort,
+    label: "real talk",
+    title: "Less Time,\nReal Effort",
+    subtitle: "You're my priority, not just my free time",
+    body: "I might not always be available…\nbut I never stop caring.\n\nI know I can't give you all my time,\nbut whatever I can…\nI genuinely want it to be yours.\n\nIt's not about how much time I have,\nit's about who I choose\nto spend it on. 💫",
+    animation: "blur-in",
   },
   {
     image: pageMemories,
     label: "our moments",
-    title: "Humari\nMemories",
-    subtitle: "Jo kabhi fade nahi hongi",
-    body: "Late night talks.\nSilly fights.\nWo comfortable silence.\nWo random smiles.\n\nYe sab — sirf humara hai,\nAditi. 📸",
-    animation: "blur-in",
+    title: "Not Perfect,\nBut I Try",
+    subtitle: "Especially for you",
+    body: "I may not say it often,\nbut I do put effort…\nespecially for you.\n\nEven when things get busy,\nI don't let you feel unimportant.\n\nYou're part of my priority,\nnot just my free time. 📸",
+    animation: "slide-right",
+  },
+  {
+    image: pageLoyalty,
+    label: "loyalty",
+    title: "I Don't\nKeep Options",
+    subtitle: "I choose — and I chose you",
+    body: "You might think I'd do something\nlike a double date…\nbut honestly, that's not me.\n\nI'm serious about you,\nnot distracted.\n\nI don't keep options…\nI choose. 🌹",
+    animation: "rotate",
+  },
+  {
+    image: pageReal,
+    label: "from the heart",
+    title: "I Really\nLike You",
+    subtitle: "More than I say",
+    body: "I really like you, and I care about\nyou more than I say.\n\nI may not be perfect,\nbut I'm real with you.\n\nIf something matters to me,\nI don't risk it —\nand you matter. ❤️",
+    animation: "zoom-in",
   },
   {
     image: pageLetter,
-    label: "from the heart",
+    label: "a letter",
     title: "A Letter\nFor Aditi",
-    subtitle: "Ye pehle kabhi nahi bola",
-    body: "Main perfect nahi hoon.\nPar tere liye try karna —\nye meri sabse real cheez hai.\n\nTu meri strength hai,\nmeri peace hai, Aditi. 🌹",
-    animation: "rotate",
+    subtitle: "Words I've been holding back",
+    body: "I'm not perfect.\nBut trying for you —\nthat's the most real thing I do.\n\nYou're my strength,\nmy peace, Aditi. 🌹",
+    animation: "blur-in",
   },
   {
     image: pageForever,
     label: "the promise",
     title: "Forever\nYours, Aditi",
     subtitle: "Written in the stars",
-    body: "Chahe kuch bhi ho —\nmain tere saath hoon.\n\n15 Feb se shuru hua,\naur ye kabhi khatam nahi hoga.\nHamesha. ♾️",
+    body: "No matter what happens —\nI'm with you.\n\nStarted on 15 Feb,\nand this will never end.\nForever. ♾️",
     animation: "fade-up",
   },
 ];
-
 const animationConfig = {
   "fade-up": {
     initial: { opacity: 0, y: 60 },
