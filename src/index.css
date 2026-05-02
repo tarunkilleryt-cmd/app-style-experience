@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Inter:wght@300;400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,44 +6,48 @@
 
 @layer base {
   :root {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 95%;
+    --background: 0 0% 4%;
+    --foreground: 40 20% 92%;
 
-    --card: 0 0% 11%;
-    --card-foreground: 0 0% 95%;
+    --card: 0 0% 8%;
+    --card-foreground: 40 20% 92%;
 
-    --popover: 0 0% 11%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 40 20% 92%;
 
-    --primary: 0 100% 60%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 40 60% 55%;
+    --primary-foreground: 0 0% 4%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 90%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 40 20% 80%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 55%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 40 10% 50%;
 
-    --accent: 340 80% 55%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 0 70% 45%;
+    --accent-foreground: 40 20% 92%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 0 0% 18%;
-    --input: 0 0% 18%;
-    --ring: 0 100% 60%;
+    --border: 40 15% 16%;
+    --input: 40 15% 16%;
+    --ring: 40 60% 55%;
 
     --radius: 1rem;
 
-    /* Custom tokens */
-    --glow: 0 100% 60%;
-    --surface-glass: 0 0% 100% / 0.06;
-    --surface-glass-border: 0 0% 100% / 0.1;
-    --gradient-warm: linear-gradient(135deg, hsl(0 100% 60%), hsl(340 80% 55%));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 13%), hsl(0 0% 9%));
-    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.4);
-    --shadow-glow: 0 0 20px hsl(0 100% 60% / 0.15);
+    /* Luxury tokens */
+    --gold: 40 60% 55%;
+    --gold-light: 40 50% 70%;
+    --wine: 0 50% 30%;
+    --wine-light: 350 40% 40%;
+    --cream: 40 30% 90%;
+
+    --gradient-gold: linear-gradient(135deg, hsl(40 60% 50%), hsl(40 50% 70%), hsl(40 60% 50%));
+    --gradient-wine: linear-gradient(135deg, hsl(0 50% 30%), hsl(350 40% 40%));
+    --gradient-dark: linear-gradient(180deg, hsl(0 0% 6%), hsl(0 0% 2%));
+    --shadow-luxury: 0 20px 60px hsl(0 0% 0% / 0.6);
+    --shadow-gold: 0 0 30px hsl(40 60% 55% / 0.15);
   }
 }
 
@@ -54,39 +58,56 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 }
 
 @layer utilities {
-  .glass {
-    background: hsl(var(--surface-glass));
-    backdrop-filter: blur(16px);
-    border: 1px solid hsl(var(--surface-glass-border));
+  .font-display {
+    font-family: 'Playfair Display', Georgia, serif;
   }
 
-  .gradient-warm {
-    background: var(--gradient-warm);
+  .font-body {
+    font-family: 'Inter', sans-serif;
   }
 
-  .gradient-card {
-    background: var(--gradient-card);
-  }
-
-  .shadow-card {
-    box-shadow: var(--shadow-card);
-  }
-
-  .shadow-glow {
-    box-shadow: var(--shadow-glow);
-  }
-
-  .text-gradient {
-    background: var(--gradient-warm);
+  .gold-text {
+    background: var(--gradient-gold);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  .gradient-gold-bg {
+    background: var(--gradient-gold);
+  }
+
+  .gradient-wine-bg {
+    background: var(--gradient-wine);
+  }
+
+  .gradient-dark-bg {
+    background: var(--gradient-dark);
+  }
+
+  .shadow-luxury {
+    box-shadow: var(--shadow-luxury);
+  }
+
+  .shadow-gold {
+    box-shadow: var(--shadow-gold);
+  }
+
+  .glass-dark {
+    background: hsl(0 0% 100% / 0.04);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(40 20% 50% / 0.1);
+  }
+
+  .line-gold {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(40 60% 55% / 0.5), transparent);
   }
 }
