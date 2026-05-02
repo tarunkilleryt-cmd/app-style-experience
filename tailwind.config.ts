@@ -57,6 +57,15 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        gold: {
+          DEFAULT: "hsl(40, 60%, 55%)",
+          light: "hsl(40, 50%, 70%)",
+        },
+        wine: {
+          DEFAULT: "hsl(0, 50%, 30%)",
+          light: "hsl(350, 40%, 40%)",
+        },
+        cream: "hsl(40, 30%, 90%)",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -64,7 +73,8 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'],
+        display: ['"Playfair Display"', 'Georgia', 'serif'],
+        body: ['Inter', 'sans-serif'],
       },
       keyframes: {
         "accordion-down": {
@@ -75,20 +85,30 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "shimmer": {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
         "float": {
           "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
+          "50%": { transform: "translateY(-8px)" },
         },
-        "pulse-glow": {
-          "0%, 100%": { opacity: "0.4" },
-          "50%": { opacity: "1" },
+        "glow-pulse": {
+          "0%, 100%": { opacity: "0.3" },
+          "50%": { opacity: "0.8" },
+        },
+        "reveal-up": {
+          "0%": { opacity: "0", transform: "translateY(30px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "float": "float 3s ease-in-out infinite",
-        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
+        "shimmer": "shimmer 3s ease-in-out infinite",
+        "float": "float 4s ease-in-out infinite",
+        "glow-pulse": "glow-pulse 3s ease-in-out infinite",
+        "reveal-up": "reveal-up 0.8s ease-out forwards",
       },
     },
   },
