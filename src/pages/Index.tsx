@@ -112,6 +112,9 @@ const animationConfig = {
 };
 
 const Index = () => {
+  const [isLocked, setIsLocked] = useState(true);
+  const [dateInput, setDateInput] = useState({ day: "", month: "", year: "" });
+  const [shake, setShake] = useState(false);
   const [step, setStep] = useState(-1);
 
   const current = steps[step];
@@ -126,10 +129,113 @@ const Index = () => {
     setStep((s) => Math.max(-1, s - 1));
   }, []);
 
+  const handleUnlock = useCallback(() => {
+    const d = parseInt(dateInput.day);
+    const m = parseInt(dateInput.month);
+    const y = parseInt(dateInput.year);
+    if (d === 15 && m === 2 && y === 2025) {
+      setIsLocked(false);
+    } else {
+      setShake(true);
+      setTimeout(() => setShake(false), 600);
+    }
+  }, [dateInput]);
+
   return (
     <div className="fixed inset-0 bg-background overflow-hidden">
       <AnimatePresence mode="wait">
-        {isSplash ? (
+        {isLocked ? (
+          /* ─── LOCK SCREEN ─── */
+          <motion.div
+            key="lock"
+            className="absolute inset-0 flex flex-col items-center justify-center px-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            transition={{ duration: 0.6 }}
+          >
+            <FloatingParticles count={15} />
+
+            <motion.div
+              className="text-5xl mb-6"
+              animate={{ rotate: [0, -5, 5, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              🔒
+            </motion.div>
+
+            <motion.h2
+              className="font-display text-3xl md:text-4xl font-bold gold-text text-center mb-2"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              Locked
+            </motion.h2>
+
+            <motion.p
+              className="font-body text-muted-foreground text-center text-sm mb-8 max-w-xs"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              Enter our special date to unlock ✨
+            </motion.p>
+
+            <motion.div
+              className="flex gap-3 mb-6"
+              animate={shake ? { x: [-10, 10, -10, 10, 0] } : {}}
+              transition={{ duration: 0.4 }}
+            >
+              <input
+                type="text"
+                inputMode="numeric"
+                maxLength={2}
+                placeholder="DD"
+                value={dateInput.day}
+                onChange={(e) => setDateInput((p) => ({ ...p, day: e.target.value.replace(/\D/g, "") }))}
+                className="w-16 h-14 rounded-xl glass-dark text-center font-display text-xl text-foreground placeholder:text-muted-foreground/40 outline-none focus:ring-1 focus:ring-gold/50"
+              />
+              <input
+                type="text"
+                inputMode="numeric"
+                maxLength={2}
+                placeholder="MM"
+                value={dateInput.month}
+                onChange={(e) => setDateInput((p) => ({ ...p, month: e.target.value.replace(/\D/g, "") }))}
+                className="w-16 h-14 rounded-xl glass-dark text-center font-display text-xl text-foreground placeholder:text-muted-foreground/40 outline-none focus:ring-1 focus:ring-gold/50"
+              />
+              <input
+                type="text"
+                inputMode="numeric"
+                maxLength={4}
+                placeholder="YYYY"
+                value={dateInput.year}
+                onChange={(e) => setDateInput((p) => ({ ...p, year: e.target.value.replace(/\D/g, "") }))}
+                className="w-20 h-14 rounded-xl glass-dark text-center font-display text-xl text-foreground placeholder:text-muted-foreground/40 outline-none focus:ring-1 focus:ring-gold/50"
+              />
+            </motion.div>
+
+            <motion.button
+              className="px-10 py-3.5 rounded-full font-body text-sm uppercase tracking-[0.2em] text-primary-foreground gradient-gold-bg shadow-gold"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleUnlock}
+            >
+              Unlock 💫
+            </motion.button>
+
+            {shake && (
+              <motion.p
+                className="font-body text-accent text-xs mt-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                Wrong date... try again 💔
+              </motion.p>
+            )}
+          </motion.div>
+        ) : isSplash ? (
           /* ─── SPLASH SCREEN ─── */
           <motion.div
             key="splash"
