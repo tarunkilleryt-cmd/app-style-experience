@@ -9,6 +9,10 @@ import pageStartdate from "@/assets/page-startdate.jpg";
 import pageMemories from "@/assets/page-memories.jpg";
 import pageLetter from "@/assets/page-letter.jpg";
 import pageForever from "@/assets/page-forever.jpg";
+import pageBusy from "@/assets/page-busy.jpg";
+import pageEffort from "@/assets/page-effort.jpg";
+import pageLoyalty from "@/assets/page-loyalty.jpg";
+import pageReal from "@/assets/page-real.jpg";
 
 interface StoryStep {
   image: string;
